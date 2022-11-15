@@ -7,14 +7,15 @@ class Company
     private string $regCode;
     private string $name;
     private string $type;
-//    private string $registered;
-//    private string $terminated;
+    private string $dateOfRegistration;
 
-    public function __construct(string $regCode, string $name, string $type)
+
+    public function __construct(string $regCode, string $name, string $type, string $dateOfRegistration)
     {
         $this->regCode = $regCode;
         $this->name = $name;
         $this->type = $type;
+        $this->dateOfRegistration = $dateOfRegistration;
     }
 
     public function getName(): string
@@ -26,4 +27,15 @@ class Company
     {
         return $this->regCode;
     }
+
+
+
+    public function getCompanyEntry(): string
+    {
+
+        return "$this->regCode, $this->name, $this->type, $this->dateOfRegistration" . PHP_EOL;
+
+    }
+
+
 }
