@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App;
 
@@ -6,16 +6,12 @@ class Company
 {
     private string $regCode;
     private string $name;
-    private string $type;
-    private string $dateOfRegistration;
 
 
-    public function __construct(string $regCode, string $name, string $type, string $dateOfRegistration)
+    public function __construct(string $regCode, string $name)
     {
         $this->regCode = $regCode;
         $this->name = $name;
-        $this->type = $type;
-        $this->dateOfRegistration = $dateOfRegistration;
     }
 
     public function getName(): string
@@ -29,11 +25,10 @@ class Company
     }
 
 
-
-    public function getCompanyEntry(): string
+    public function getCompanyEntry()
     {
 
-        return "$this->regCode, $this->name, $this->type, $this->dateOfRegistration" . PHP_EOL;
+        return "$this->regCode || $this->name" . PHP_EOL;
 
     }
 
