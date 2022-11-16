@@ -4,13 +4,12 @@ require_once 'vendor/autoload.php';
 
 use App\CsvReader;
 
-//šis atgriež ierakstu ar Company Collections
 $companies = new CsvReader('register.csv', ';');
 $companies = $companies->getRecords();
 
-while(true) {
-    echo "Choose what you want to do\n";
-    echo "Choose 1 to see the last 30 entries of the register\n";
+while (true) {
+    echo "Choose what you want to do:\n";
+    echo "Choose 1 to see the entries of the register\n";
     echo "Choose 2 to search for company by registration number\n";
     echo "Choose 3 to search for company by name\n";
     echo "Choose 4 to Exit\n";
@@ -18,7 +17,8 @@ while(true) {
     $userSelection = (int)readline(">> ");
 
     if ($userSelection === 1) {
-        foreach ($companies->get30LastEntries() as $company) {
+        $numberOfEntries = (int)readline("Enter number how many entries you would like to see: ");
+        foreach ($companies->getLastEntries($numberOfEntries) as $company) {
             echo $company->getCompanyEntry();
         }
     }
@@ -27,7 +27,7 @@ while(true) {
         $regCode = readline("Enter registration number: ");
         $company = $companies->getByRegNum($regCode);
         if ($company) {
-            echo "Company name is " . $company->getName() . PHP_EOL;
+            echo $company->getCompanyEntry() . PHP_EOL;
         } else {
             echo "Company was not found in the list\n";
         }
@@ -37,7 +37,7 @@ while(true) {
         $companyName = readline("Enter name: ");
         $company = $companies->getByName($companyName);
         if ($company) {
-            echo $company->getRegCode();
+            echo $company->getCompanyEntry() . PHP_EOL;
 
         } else {
             echo "Company was not found in the list\n";

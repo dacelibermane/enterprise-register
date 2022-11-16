@@ -14,9 +14,9 @@ class CompanyCollection
     }
 
 
-    public function get30LastEntries(): array
+    public function getLastEntries(int $amount = 30): array
     {
-        return array_slice($this->companies, -30);
+        return array_slice($this->companies, -$amount);
     }
 
 
@@ -24,7 +24,7 @@ class CompanyCollection
     {
         foreach ($this->companies as $company) {
             if ($company->getName() === $name) {
-                return $company->getRegCode();
+                return $company;
             }
         }
         return null;
@@ -34,7 +34,7 @@ class CompanyCollection
     {
         foreach ($this->companies as $company) {
             if ($company->getRegCode() === $regNum) {
-                return $company->getName();
+                return $company;
             }
         }
         return null;

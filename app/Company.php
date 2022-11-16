@@ -14,23 +14,21 @@ class Company
         $this->name = $name;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
     public function getRegCode(): string
     {
         return $this->regCode;
     }
 
-
-    public function getCompanyEntry()
+    public function getName(): string
     {
-
-        return "$this->regCode || $this->name" . PHP_EOL;
-
+        return $this->name;
     }
 
+    public function getCompanyEntry(): string
+    {
+
+        return "Registration number: $this->regCode || Name: $this->name" . PHP_EOL;
+
+    }
 
 }
