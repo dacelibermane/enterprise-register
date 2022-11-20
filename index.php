@@ -24,7 +24,7 @@ while (true) {
     }
 
     if ($userSelection === 2) {
-        $regCode = readline("Enter registration number: ");
+        $regCode = trim(readline("Enter registration number: "));
         $company = $companies->getByRegNum($regCode);
         if ($company) {
             echo $company->getCompanyEntry() . PHP_EOL;
